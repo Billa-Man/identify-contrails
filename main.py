@@ -10,7 +10,8 @@ from torch.utils.data import TensorDataset, DataLoader
 from torchsummary import summary
 
 from config import ModelConfig
-from FCN_no_ensemble import FCN
+from fcn_wo_multibranch import FCN
+from fcn_multibranch import FCN_Multibranch
 from functions import *
 
 
@@ -64,7 +65,7 @@ val_dataloader = DataLoader(val_dataset,
 
 gc.collect()
 
-model = FCN(9, 1)
+model = FCN_Multibranch(9, 1)
 model.to(device)
 
 criterion = nn.BCELoss()
