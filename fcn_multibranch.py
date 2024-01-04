@@ -2,7 +2,7 @@ import torch
 import torch.nn as nn
 
 class FCN(nn.Module):
-    def __init__(self, in_channels, out_channels=1):
+    def __init__(self, in_channels):
         super(FCN, self).__init__()
 
         self.encoder_1 = self.encoder_block_2(in_channels, 64)   # i/p = 256, o/p = 128
