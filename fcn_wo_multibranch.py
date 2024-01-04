@@ -5,16 +5,16 @@ class FCN(nn.Module):
     def __init__(self, in_channels, out_channels=1):
         super(FCN, self).__init__()
 
-        self.encoder_1 = self.encoder_block_2(in_channels, 64) # i/p = 256, o/p = 128
-        self.encoder_2 = self.encoder_block_2(64, 128)         # i/p = 128, o/p = 64
-        self.encoder_3 = self.encoder_block_3(128, 256)        # i/p = 64, o/p = 32
-        self.encoder_4 = self.encoder_block_3(256, 512)        # i/p = 32, o/p = 16
+        self.encoder_1 = self.encoder_block_2(in_channels, 64)   # i/p = 256, o/p = 128
+        self.encoder_2 = self.encoder_block_2(64, 128)           # i/p = 128, o/p = 64
+        self.encoder_3 = self.encoder_block_3(128, 256)          # i/p = 64, o/p = 32
+        self.encoder_4 = self.encoder_block_3(256, 512)          # i/p = 32, o/p = 16
 
-        self.mid = self.mid_block(512, 1024)                   # i/p = 16, o/p = 16
+        self.mid = self.mid_block(512, 1024)                     # i/p = 16, o/p = 16
 
-        self.conv_t_32s = nn.ConvTranspose2d(1, 1, 2, 2)       # i/p = 16  , o/p = 32
-        self.conv_t_16s = nn.ConvTranspose2d(2, 1, 2, 2)       # i/p = 32,  o/p = 64
-        self.conv_t_8s  = nn.ConvTranspose2d(2, 1, 4, 4)      # i/p = 64, o/p = 256
+        self.conv_t_32s = nn.ConvTranspose2d(1, 1, 2, 2)         # i/p = 16  , o/p = 32
+        self.conv_t_16s = nn.ConvTranspose2d(2, 1, 2, 2)         # i/p = 32,  o/p = 64
+        self.conv_t_8s  = nn.ConvTranspose2d(2, 1, 4, 4)         # i/p = 64, o/p = 256
 
         self.x3_conv_1x1 = nn.Conv2d(256, 1, 1, 1)
         self.x2_conv_1x1 = nn.Conv2d(128, 1, 1, 1)
