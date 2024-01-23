@@ -1,8 +1,6 @@
 # Import libraries
-
 import matplotlib.pyplot as plt
 import gc
-from tqdm.notebook import tqdm
 
 import torch
 import torch.nn as nn
@@ -40,7 +38,6 @@ train_dataloader = DataLoader(train_dataset, batch_size=config.batch_size, shuff
 val_dataloader = DataLoader(val_dataset, batch_size=config.batch_size, shuffle=False, drop_last=False, pin_memory=True)
 
 # Initialise model
-
 model = FCN_Multibranch(9, 1)
 model.to(device)
 
@@ -50,11 +47,9 @@ optimizer = torch.optim.Adam(model.parameters(), lr=config.learning_rate, weight
 print(summary(model, (9, 256, 256)))
 
 # Model Training and Evalaution
-
 train_loss, val_loss, dice_values, iou_values = train_and_eval(model, criterion, optimizer, config.num_epochs, device, train_dataloader, val_dataloader)
 
 # Plot metrics
-
 x_values = range(config.num_epochs)
 
 plt.plot(x_values, train_loss, label='Train Loss')
